@@ -46,8 +46,8 @@ class ProductController extends Controller
             "name" => "required",
             "price" => "required|numeric|gt:0"
         ]);
-        dd($request->all());
-        //here will be the code to call the model and save it to the database
+
+        return back()->with('success', 'completed successfully!');
     }
 
 }
