@@ -1,0 +1,43 @@
+@extends('layouts.app')
+@section('title', $viewData["title"])
+@section('content')
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Edit Category</div>
+                <div class="card-body">
+                    @if($errors->any())
+                        <ul class="alert alert-danger list-unstyled">
+                            @foreach($errors->all() as $error)
+                                <li>- {{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                    <form method="POST" action="{{ route('category.update', ['id' => $viewData['category']->getId()]) }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name"
+                                value="{{ old('name', $viewData['category']->getName()) }}" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" name="description"
+                                rows="3">{{ old('description', $viewData['category']->getDescription()) }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Slug</label>
+                            <input type="text" class="form-control" name="slug"
+                                value="{{ old('slug', $viewData['category']->getSlug()) }}" />
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" name="status" id="status" value="1" {{ $viewData['category']->getStatus() ? 'checked' : '' }}>
+                            <label class="form-check-label" for="status">Active Status</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
