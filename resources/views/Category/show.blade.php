@@ -7,7 +7,7 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">
-                        {{ strtoupper($viewData["category"]->getName()) }}
+                        {{ $viewData["category"]->getName() }}
                     </h5>
                     <p class="card-text">{{ $viewData["category"]->getDescription() }}</p>
                     <p class="card-text"><small class="text-muted">Status:
@@ -56,7 +56,7 @@
             <ul class="list-group list-group-flush">
                 @forelse($viewData['category']->getProducts()->get() as $product)
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        {{ strtoupper($product->getName()) }} - ${{ $product->getPrice() }}
+                        {{ $product->getName() }} - ${{ $product->getPrice() }}
                         <a href="{{ route('product.show', ['id' => $product->getId()]) }}"
                             class="btn btn-sm btn-info text-white">Ver Producto</a>
                     </li>

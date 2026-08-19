@@ -10,7 +10,7 @@
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title">
-            {{ strtoupper($viewData["product"]->getName()) }}
+            {{ $viewData["product"]->getName() }}
           </h5>
           <p class="card-text">{{ $viewData["product"]->getPrice() }}</p>
           @foreach($viewData["product"]->comments as $comment)

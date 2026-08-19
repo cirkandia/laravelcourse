@@ -29,7 +29,7 @@ class Category extends Model
 
     public function getName(): string
     {
-        return $this->attributes['name'];
+        return strtoupper($this->attributes['name']);
     }
 
     public function setName(string $name): void

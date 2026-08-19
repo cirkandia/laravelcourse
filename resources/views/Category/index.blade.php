@@ -13,7 +13,7 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <a href="{{ route('category.show', ['id' => $category->getId()]) }}"
-                            class="btn bg-primary text-white">{{ strtoupper($category->getName()) }}</a>
+                            class="btn bg-primary text-white">{{ $category->getName() }}</a>
                     </div>
                 </div>
             </div>
