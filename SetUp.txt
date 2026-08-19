@@ -1,0 +1,61 @@
+========================================================================
+       MANUAL DEFINITIVO PARA CORRER EL PROYECTO LOCALMENTE
+========================================================================
+
+¡Hola! Si acabas de descargar o te acaban de pasar la carpeta de este
+proyecto, has llegado al lugar indicado.
+
+Para que puedas ejecutar este proyecto de Laravel en tu computadora
+sin fallos ni complicaciones, por favor lee las siguientes 
+instrucciones PASO A PASO detalladamente:
+
+
+--- REQUISITOS FUNDAMENTALES ---
+Toda computadora que intente correr un proyecto de Laravel *obligatoriamente* 
+debe tener 3 cosas instaladas antes de empezar:
+
+1. PHP (Versión 8.2 o superior).
+2. COMPOSER (Puedes descargarlo de getcomposer.org e instalarlo. Básicamente 
+   hace que Laravel funcione internamente).
+3. SERVIDOR LOCAL MYSQL (Como por ejemplo XAMPP, Laragon, o preferiblemente MAMP).
+
+
+--- ¿CÓMO PONER A FUNCIONAR LA PÁGINA? ---
+He creado un archivo verde llamado (Setup.bat) que hace prácticamente 
+todo por ti de manera automática. Es lo más cercano a darle 
+doble clic a un instalador, pero antes de ejecutarlo debes conocer esto:
+
+EL PROBLEMA DE LAS BASES DE DATOS DE CADA COMPUTADORA:
+Este proyecto usa una base de datos MySQL. Cuando un proyecto se descarga 
+por primera vez, no sabe si tú tienes XAMPP, MAMP o Laragon. Por ende, 
+antes de ejecutar nada, necesitas tener lista tu base de datos:
+
+1. Abre tu MAMP o XAMPP y enciende el servidor MySQL.
+2. Ingresa a phpMyAdmin desde tu navegador (usualmente http://localhost/phpmyadmin)
+3. En la pestaña de bases de datos, CREA UNA NUEVA BASE DE DATOS en blanco,
+   nombrándola estrictamente: "laravelcourse".
+
+
+--- EJECUCIÓN (¡EL ARCHIVO DE CONFIGURACIÓN AUTOMÁTICA!) ---
+Una vez que exista la base de datos "laravelcourse" en el MySQL local:
+1. Dale **DOBLE CLIC al archivo `Setup.bat`** (Tiene el icono de unos 
+   engranajes azules de Windows).
+2. Se abrirá una pantalla negra de sistema. Él descargará absolutamente 
+   todo el código de las librerías necesarias.
+3. El programa negro se pausará y te pedirá configurar el archivo `.env`.
+   Verifica en este bloc de notas o editor ese archivo para ajustar tu puerto:
+   - Si tienes MAMP, puerto 8889 y password root.
+   - Si tienes XAMPP, puerto 3306 y password vacío "".
+4. Una vez hayas verificado, aprieta cualquier tecla en la ventana 
+   negra. El programa subirá todas las tablas, las poblará de modelos web y 
+   empezará a rodar la página.
+
+¡Entra desde tu navegador web a: http://127.0.0.1:8000 para probar la página!
+
+------------------------------------------------------------------------
+NOTA SOBRE POSIBLES PROBLEMAS
+- "PDO Exception / Connection Refused": Significa que prendiste el Setup 
+pero tu XAMPP o MAMP no estaba encendido, o los puertos en tu '.env' 
+están erróneos. Asegúrate de configurar la Base de Datos.
+- Si todo falla, también puedes levantar el servidor manualmente abriendo 
+una terminal en esta carpeta y ejecutando "php artisan serve".
