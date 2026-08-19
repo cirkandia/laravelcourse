@@ -1,58 +1,86 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🛒 Online Store (Laravel EAFIT App)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+¡Hola! Bienvenido a este proyecto de Laravel. Esta aplicación es una "Online Store" desarrollada como parte de un curso de EAFIT. Contiene funcionalidades de Catálogo de Productos, creación y edición de Categorías con asociaciones de 1 a N, y una estructura arquitectónica moderna (MVC + Service Pattern).
 
-## About Laravel
+## 🚀 Requisitos Previos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Para correr este proyecto en tu computadora, necesitarás tener instalado lo siguiente:
+- **PHP** (versión 8.2 o superior).
+- **Composer** (gestor de dependencias de PHP).
+- **MySQL** (Puedes usar XAMPP, Laragon, o **MAMP** que es con el que fue desarrollado).
+- **Node.js** y **NPM** (opcional, para compilar los assets si los modificas).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠️ Instrucciones de Instalación
 
-## Learning Laravel
+Sigue estos pasos en tu terminal favorita (PowerShell, WSL o Git Bash) para levantar el proyecto desde cero:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
+### 1. Clonar el repositorio y entrar a la carpeta
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone <url-de-tu-repositorio>
+cd laravelcourse
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Instalar dependencias de PHP
+Este proyecto utiliza múltiples librerías que deben descargarse por primera vez:
+```bash
+composer install
+```
 
-## Contributing
+### 3. Configurar el Entorno (.env)
+Laravel necesita saber cómo conectarse a tu base de datos local. Duplica el archivo de ejemplo `.env.example` y renómbralo a `.env`:
+```bash
+cp .env.example .env
+```
+*(Si estás en Windows PowerShell, puedes simplemente copiar y pegar el archivo manualmente y cambiarle el nombre a `.env`).*
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. Generar la Clave de Seguridad de la App
+Esto genera los tokens de encriptación necesarios para las sesiones:
+```bash
+php artisan key:generate
+```
 
-## Code of Conduct
+### 5. Configurar la Base de Datos MySQL
+Abre el archivo `.env` que acabas de crear y busca la sección de Base de Datos (cerca de la línea 20).
+El proyecto fue construido utilizando **MAMP**, por lo que los valores por defecto que encontrarás probablemente luzcan así:
+```ini
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=8889
+DB_DATABASE=laravelcourse
+DB_USERNAME=root
+DB_PASSWORD=root
+```
+> [!IMPORTANT]
+> - Crea una base de datos local llamada `laravelcourse` (por ejemplo en phpMyAdmin).
+> - Si estás usando **XAMPP o Laragon**, tu puerto probablemente sea el **3306** y la contraseña esté **vacía**. ¡Asegúrate de ajustar estos 3 datos en tu `.env` a tu propio sistema!
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 6. Ejecutar las Migraciones y Seeders (Poblar Base de Datos)
+Ahora, vamos a crear todas las tablas (Products, Categories, Comments) y llenarlas con datos de prueba autogenerados:
+```bash
+php artisan migrate --seed
+```
+*(Si usas MAMP en Windows, recuerda asegurarte de tener el driver PDO activo, o puedes ejecutar el comando con la ruta absoluta de MAMP: `C:\MAMP\bin\php\php8.5.9\php.exe artisan migrate --seed`)*.
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🏃‍♂️ Levantar el Servidor
 
-## License
+¡Eso es todo! Ya estás listo para probar la aplicación. Simplemente enciende el servidor de pruebas incorporado de Laravel:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan serve
+```
+
+Abre tu navegador web y entra a [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+---
+
+## 📂 Funcionalidades Destacadas (Lo que debes probar)
+
+- **Creación de Productos:** Podrás dar de alta productos y dejarlos guardados en DB usando un Service puro.
+- **Relación de Categorías:** Entra a la "C" superior. Una vez ahí podrás registrar categorías con su propio *slug* e incluso asignarle o des-asignarle productos específicos de forma cruzada, todo hecho con las convenciones oficiales de Eloquent.
+- **Service Pattern:** Échale un ojo a la carpeta `app/Services/`. Descubrirás que los controladores de esta app están completamente limpios y las lógicas complicadas se modularizaron.
+
+¡Diviértete!
