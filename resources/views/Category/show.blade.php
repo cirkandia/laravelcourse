@@ -30,9 +30,10 @@
                     <a href="{{ route('category.index') }}" class="btn btn-outline-secondary btn-sm">
                         < Volver a Categorías</a>
                             <form method="POST"
-                                action="{{ route('category.assign', ['id' => $viewData['category']->getId()]) }}"
+                                action="{{ route('product.assignCategory') }}"
                                 class="d-inline-block">
                                 @csrf
+                                <input type="hidden" name="category_id" value="{{ $viewData['category']->getId() }}">
                                 <div class="input-group input-group-sm">
                                     <select name="product_id" class="form-select" required>
                                         <option value="" disabled selected>Añadir existente...</option>
@@ -54,7 +55,7 @@
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
-                @forelse($viewData['category']->getProducts()->get() as $product)
+                @forelse($viewData['category']->getProducts() as $product)
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         {{ $product->getName() }} - ${{ $product->getPrice() }}
                         <a href="{{ route('product.show', ['id' => $product->getId()]) }}"

@@ -2,26 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ProductService;
+use App\Http\Requests\StoreProductRequest;
+use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    protected ProductService $productService;
-
-    public function __construct(ProductService $productService)
-    {
-        $this->productService = $productService;
-    }
-
     public function index(): View
     {
         $viewData = [];
         $viewData['title'] = 'Products - Online Store';
         $viewData['subtitle'] = 'List of products';
-        $viewData['products'] = $this->productService->getAllProducts();
+        $viewData['products'] = Product::all();
 
         return view('product.index')->with('viewData', $viewData);
     }
@@ -29,9 +23,9 @@ class ProductController extends Controller
     public function show(string $id): View
     {
         $viewData = [];
-        $product = $this->productService->getProductById($id);
-        $viewData['title'] = $product->getName().' - Online Store';
-        $viewData['subtitle'] = $product->getName().' - Product information';
+        $product = Product::findOrFail($id);
+        $viewData['title'] = $product->getName() . ' - Online Store';
+        $viewData['subtitle'] = $product->getName() . ' - Product information';
         $viewData['product'] = $product;
 
         return view('product.show')->with('viewData', $viewData);
@@ -45,15 +39,24 @@ class ProductController extends Controller
         return view('product.create')->with('viewData', $viewData);
     }
 
-    public function save(Request $request): RedirectResponse
+    public function save(StoreProductRequest $request): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required',
-            'price' => 'required|numeric|gt:0',
-        ]);
-
-        $this->productService->createProduct($request->only(['name', 'price']));
+        Product::create($request->validated());
 
         return back()->with('success', 'Product created successfully!');
+    }
+
+    public function assignCategory(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        $product = Product::findOrFail($request->input('product_id'));
+        $product->setCategoryId($request->input('category_id'));
+        $product->save();
+
+        return back()->with('success', 'Product assigned successfully!');
     }
 }

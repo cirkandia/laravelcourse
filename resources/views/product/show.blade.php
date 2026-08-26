@@ -13,7 +13,7 @@
             {{ $viewData["product"]->getName() }}
           </h5>
           <p class="card-text">{{ $viewData["product"]->getPrice() }}</p>
-          @foreach($viewData["product"]->comments as $comment)
+          @foreach($viewData["product"]->getComments() as $comment)
             - {{ $comment->getDescription() }}<br />
           @endforeach
 
