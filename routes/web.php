@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ImageNotDIController;
+use App\Http\Controllers\PiezaController;
 
 // Home Routes
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -41,4 +42,6 @@ Route::post('/image/save', [ImageController::class, 'save'])->name("image.save")
 Route::get('/image-not-di', [ImageNotDIController::class, 'index'])->name("imagenotdi.index");
 Route::post('/image-not-di/save', [ImageNotDIController::class, 'save'])->name("imagenotdi.save");
 
-
+// Pieza Routes
+Route::get('/piezas/primeras', [PiezaController::class, 'primeras'])->name('piezas.primeras');
+Route::resource('piezas', PiezaController::class);
