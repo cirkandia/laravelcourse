@@ -7,7 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ImageNotDIController;
-use App\Http\Controllers\PiezaController;
+use App\Http\Controllers\HumanController;
 
 // Home Routes
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -42,6 +42,12 @@ Route::post('/image/save', [ImageController::class, 'save'])->name("image.save")
 Route::get('/image-not-di', [ImageNotDIController::class, 'index'])->name("imagenotdi.index");
 Route::post('/image-not-di/save', [ImageNotDIController::class, 'save'])->name("imagenotdi.save");
 
-// Pieza Routes
-Route::get('/piezas/primeras', [PiezaController::class, 'primeras'])->name('piezas.primeras');
-Route::resource('piezas', PiezaController::class);
+// Human Routes
+Route::get('/humans/primeros', [HumanController::class, 'primeros'])->name('humans.primeros');
+Route::get('/humans', [HumanController::class, 'index'])->name('humans.index');
+Route::get('/humans/create', [HumanController::class, 'create'])->name('humans.create');
+Route::post('/humans', [HumanController::class, 'store'])->name('humans.store');
+Route::get('/humans/{human}', [HumanController::class, 'show'])->name('humans.show');
+Route::get('/humans/{human}/edit', [HumanController::class, 'edit'])->name('humans.edit');
+Route::put('/humans/{human}', [HumanController::class, 'update'])->name('humans.update');
+Route::delete('/humans/{human}', [HumanController::class, 'destroy'])->name('humans.destroy');

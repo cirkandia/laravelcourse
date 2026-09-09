@@ -9,23 +9,23 @@
         </div>
     </div>
 
-    @if(count($viewData["piezas"]) == 2)
+    @if(count($viewData["humans"]) == 2)
         <div class="row justify-content-center mb-4">
             <div class="col-md-8 text-center">
                 @php
-                    $p1 = $viewData["piezas"][0];
-                    $p2 = $viewData["piezas"][1];
+                    $p1 = $viewData["humans"][0];
+                    $p2 = $viewData["humans"][1];
                 @endphp
-                @if($p1->getValor() > $p2->getValor())
+                @if($p1->getAura() > $p2->getAura())
                     <h4 class="text-success fw-bold">🏆 ¡El ganador es {{ $p1->getNombre() }}!</h4>
-                @elseif($p2->getValor() > $p1->getValor())
+                @elseif($p2->getAura() > $p1->getAura())
                     <h4 class="text-success fw-bold">🏆 ¡El ganador es {{ $p2->getNombre() }}!</h4>
                 @else
                     <h4 class="text-warning fw-bold">🤝 ¡Es un empate entre {{ $p1->getNombre() }} y {{ $p2->getNombre() }}!</h4>
                 @endif
             </div>
         </div>
-    @elseif(count($viewData["piezas"]) == 1)
+    @elseif(count($viewData["humans"]) == 1)
         <div class="row justify-content-center mb-4">
             <div class="col-md-8 text-center">
                 <h4 class="text-info fw-bold">Falta otro humano para comparar quién ganaría.</h4>
@@ -34,16 +34,16 @@
     @endif
 
     <div class="row justify-content-center">
-        @if(count($viewData["piezas"]) > 0)
-            @foreach ($viewData["piezas"] as $pieza)
+        @if(count($viewData["humans"]) > 0)
+            @foreach ($viewData["humans"] as $human)
                 <div class="col-md-5 mb-4">
                     <div class="card shadow-sm border-0 bg-light rounded-4 h-100">
                         <div class="card-body text-center p-5 d-flex flex-column justify-content-center">
                             <h3 class="fw-bolder mb-3 text-dark">
-                                {{ $pieza->getNombre() }}
+                                {{ $human->getNombre() }}
                             </h3>
                             <h5 class="text-primary fw-bold m-0 text-uppercase tracking-wide">
-                                Aura: {{ $pieza->getValor() }}
+                                Aura: {{ $human->getAura() }}
                             </h5>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
 
     <div class="row">
         <div class="col-12 text-center mt-4">
-            <a href="{{ route('piezas.index') }}" class="btn btn-outline-secondary">
+            <a href="{{ route('humans.index') }}" class="btn btn-outline-secondary">
                 Volver al listado completo
             </a>
         </div>

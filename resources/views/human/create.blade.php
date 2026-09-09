@@ -15,7 +15,7 @@
                             @endforeach
                         </ul>
                     @endif
-                    <form method="POST" action="{{ route('piezas.store') }}">
+                    <form method="POST" action="{{ route('humans.store') }}">
                         @csrf
                         <div class="mb-3">
                             <label class="form-label fw-bold">Nombre</label>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Aura</label>
-                            <input type="number" class="form-control" name="valor" value="{{ old('valor', 1) }}" required />
+                            <input type="number" class="form-control" name="aura" value="{{ old('aura', 1) }}" required />
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Categoría Jerárquica</label>
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="d-flex justify-content-between mt-4">
-                            <a href="{{ route('piezas.index') }}" class="btn btn-outline-secondary">Volver al listado</a>
+                            <a href="{{ route('humans.index') }}" class="btn btn-outline-secondary">Volver al listado</a>
                             <button type="submit" class="btn btn-success">Guardar Humano</button>
                         </div>
                     </form>

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pieza extends Model
+class Human extends Model
 {
     /**
      * Los atributos que son asignables en masa.
@@ -13,7 +13,7 @@ class Pieza extends Model
      */
     protected $fillable = [
         'nombre',
-        'valor',
+        'aura',
         'categoria',
     ];
 
@@ -37,14 +37,14 @@ class Pieza extends Model
         $this->attributes['nombre'] = $nombre;
     }
 
-    public function getValor(): int
+    public function getAura(): int
     {
-        return $this->attributes['valor'];
+        return $this->attributes['aura'];
     }
 
-    public function setValor(int $valor): void
+    public function setAura(int $aura): void
     {
-        $this->attributes['valor'] = $valor;
+        $this->attributes['aura'] = $aura;
     }
 
     public function getCategoria(): string

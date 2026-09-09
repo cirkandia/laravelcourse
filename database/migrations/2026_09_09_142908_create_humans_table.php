@@ -10,10 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('piezas', function (Blueprint $table) {
+        Schema::create('humans', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->integer('valor'); // Valor de uso
+            $table->integer('aura'); // Nivel de Aura
             $table->enum('categoria', ['común', 'moderado', 'legendario']); // Categorías jerárquicas
             $table->timestamps();
         });
@@ -24,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('piezas');
+        Schema::dropIfExists('humans');
     }
 };
