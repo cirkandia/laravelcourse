@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
 /**
  * CATEGORY ATTRIBUTES
@@ -14,17 +15,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * $this->attributes['slug'] - string - contains the category slug
  * $this->attributes['status'] - bool - contains the category status
  * $this->jewels - Jewel[] - contains the associated jewels
- * 
+ *
  * @property int $id
  * @property string $name
  * @property string|null $description
  * @property string $slug
  * @property bool $status
  * @property int|null $parent_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $subcategories
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection|Category[] $subcategories
+ * @property-read Collection|Product[] $products
  */
 class Category extends Model
 {
@@ -77,7 +78,7 @@ class Category extends Model
 
     public function toggleStatus(): void
     {
-        $this->attributes['status'] = !$this->attributes['status'];
+        $this->attributes['status'] = ! $this->attributes['status'];
         $this->save();
     }
 

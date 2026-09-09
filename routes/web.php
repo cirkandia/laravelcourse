@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HumanController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ImageNotDIController;
-use App\Http\Controllers\HumanController;
+use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Route;
 
 // Home Routes
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -30,17 +30,17 @@ Route::post('/categories/{id}/delete', [CategoryController::class, 'delete'])->n
 Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('category.show');
 
 // Cart Routes
-Route::get('/cart', [CartController::class, 'index'])->name("cart.index");
-Route::get('/cart/add/{id}', [CartController::class, 'add'])->name("cart.add");
-Route::get('/cart/removeAll/', [CartController::class, 'removeAll'])->name("cart.removeAll");
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart/removeAll/', [CartController::class, 'removeAll'])->name('cart.removeAll');
 
 // Image Upload Routes (with Dependency Injection)
-Route::get('/image', [ImageController::class, 'index'])->name("image.index");
-Route::post('/image/save', [ImageController::class, 'save'])->name("image.save");
+Route::get('/image', [ImageController::class, 'index'])->name('image.index');
+Route::post('/image/save', [ImageController::class, 'save'])->name('image.save');
 
 // Image Upload Routes (without Dependency Injection)
-Route::get('/image-not-di', [ImageNotDIController::class, 'index'])->name("imagenotdi.index");
-Route::post('/image-not-di/save', [ImageNotDIController::class, 'save'])->name("imagenotdi.save");
+Route::get('/image-not-di', [ImageNotDIController::class, 'index'])->name('imagenotdi.index');
+Route::post('/image-not-di/save', [ImageNotDIController::class, 'save'])->name('imagenotdi.save');
 
 // Human Routes
 Route::get('/humans/primeros', [HumanController::class, 'primeros'])->name('humans.primeros');

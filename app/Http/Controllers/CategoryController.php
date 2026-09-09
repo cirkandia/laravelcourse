@@ -25,8 +25,8 @@ class CategoryController extends Controller
     {
         $viewData = [];
         $category = Category::findOrFail($id);
-        $viewData['title'] = $category->getName() . ' - Online Store';
-        $viewData['subtitle'] = $category->getName() . ' - Category information';
+        $viewData['title'] = $category->getName().' - Online Store';
+        $viewData['subtitle'] = $category->getName().' - Category information';
         $viewData['category'] = $category;
         $viewData['unassigned_products'] = Product::whereNull('category_id')->get();
 
@@ -73,4 +73,3 @@ class CategoryController extends Controller
         return redirect()->route('category.index')->with('success', 'Category deleted successfully!');
     }
 }
-

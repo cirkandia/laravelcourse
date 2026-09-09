@@ -16,8 +16,8 @@ class CartController extends Controller
         });
 
         $cartProducts = [];
-        $cartProductData = $request->session()->get('cart_product_data', []); //we get the products stored in session
-        if (!empty($cartProductData)) {
+        $cartProductData = $request->session()->get('cart_product_data', []); // we get the products stored in session
+        if (! empty($cartProductData)) {
             $cartProducts = Product::findMany(array_keys($cartProductData))->keyBy(function ($product) {
                 return $product->getId();
             });
