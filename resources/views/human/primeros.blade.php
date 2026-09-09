@@ -17,11 +17,11 @@
                     $p2 = $viewData["humans"][1];
                 @endphp
                 @if($p1->getAura() > $p2->getAura())
-                    <h4 class="text-success fw-bold">🏆 ¡El ganador es {{ $p1->getNombre() }}!</h4>
+                    <h4 class="text-success fw-bold">🏆 ¡El ganador es {{ $p1->getName() }}!</h4>
                 @elseif($p2->getAura() > $p1->getAura())
-                    <h4 class="text-success fw-bold">🏆 ¡El ganador es {{ $p2->getNombre() }}!</h4>
+                    <h4 class="text-success fw-bold">🏆 ¡El ganador es {{ $p2->getName() }}!</h4>
                 @else
-                    <h4 class="text-warning fw-bold">🤝 ¡Es un empate entre {{ $p1->getNombre() }} y {{ $p2->getNombre() }}!</h4>
+                    <h4 class="text-warning fw-bold">🤝 ¡Es un empate entre {{ $p1->getName() }} y {{ $p2->getName() }}!</h4>
                 @endif
             </div>
         </div>
@@ -40,7 +40,7 @@
                     <div class="card shadow-sm border-0 bg-light rounded-4 h-100">
                         <div class="card-body text-center p-5 d-flex flex-column justify-content-center">
                             <h3 class="fw-bolder mb-3 text-dark">
-                                {{ $human->getNombre() }}
+                                {{ $human->getName() }}
                             </h3>
                             <h5 class="text-primary fw-bold m-0 text-uppercase tracking-wide">
                                 Aura: {{ $human->getAura() }}

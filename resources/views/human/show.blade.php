@@ -13,20 +13,20 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <h4 class="card-title fw-bold">
-                                {{ $viewData["human"]->getNombre() }}
-                                @if(strtolower($viewData["human"]->getCategoria()) === 'legendario')
-                                    <span class="badge bg-warning text-dark fs-6 ms-2">Legendario!</span>
+                                {{ $viewData["human"]->getName() }}
+                                @if($viewData["human"]->isLegendary())
+                                    <span class="badge bg-warning text-dark fs-6 ms-2">Legendary!</span>
                                 @endif
                             </h4>
                             <p class="card-text text-muted mb-4 d-flex align-items-center gap-2">
                                 <span>Aura:</span>
                                 <span
-                                    class="fs-5 fw-bold {{ strtolower($viewData["human"]->getCategoria()) === 'común' ? 'text-primary' : 'text-dark' }}">
+                                    class="fs-5 fw-bold {{ $viewData["human"]->isCommon() ? 'text-primary' : 'text-dark' }}">
                                     {{ $viewData["human"]->getAura() }}
                                 </span>
                             </p>
                             <p class="card-text mb-4">
-                                <span class="badge bg-secondary">{{ ucfirst($viewData["human"]->getCategoria()) }}</span>
+                                <span class="badge bg-secondary">{{ ucfirst($viewData["human"]->getCategory()) }}</span>
                             </p>
 
                             <div class="d-flex gap-2">

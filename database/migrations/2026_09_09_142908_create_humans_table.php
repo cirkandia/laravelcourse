@@ -12,9 +12,9 @@ return new class extends Migration {
     {
         Schema::create('humans', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('name');
             $table->integer('aura'); // Nivel de Aura
-            $table->enum('categoria', ['común', 'moderado', 'legendario']); // Categorías jerárquicas
+            $table->enum('category', ['common', 'moderate', 'legendary']); // Categorías jerárquicas
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Human;
+use App\Http\Requests\SaveHumanRequest;
 use Illuminate\Http\Request;
 
 class HumanController extends Controller
@@ -14,7 +15,7 @@ class HumanController extends Controller
         $viewData['subtitle'] = 'List of Humans';
 
         $sortBy = $request->query('sort_by');
-        $validSortColumns = ['id', 'nombre', 'aura', 'categoria'];
+        $validSortColumns = ['id', 'name', 'aura', 'category'];
 
         if (in_array($sortBy, $validSortColumns)) {
             $viewData['humans'] = Human::orderBy($sortBy, 'desc')->get();
@@ -45,15 +46,9 @@ class HumanController extends Controller
         return view('human.create')->with('viewData', $viewData);
     }
 
-    public function store(Request $request): \Illuminate\Http\RedirectResponse
+    public function store(SaveHumanRequest $request): \Illuminate\Http\RedirectResponse
     {
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'aura' => 'required|integer',
-            'categoria' => 'required|in:común,moderado,legendario',
-        ]);
-
-        Human::create($request->only(['nombre', 'aura', 'categoria']));
+        Human::create($request->validated());
 
         return redirect()->route('humans.index')->with('success', 'Human created successfully!');
     }
@@ -61,8 +56,8 @@ class HumanController extends Controller
     public function show(Human $human): \Illuminate\View\View
     {
         $viewData = [];
-        $viewData['title'] = $human->getNombre() . ' - Online Store';
-        $viewData['subtitle'] = $human->getNombre() . ' - Human Information';
+        $viewData['title'] = $human->getName() . ' - Online Store';
+        $viewData['subtitle'] = $human->getName() . ' - Human Information';
         $viewData['human'] = $human;
 
         return view('human.show')->with('viewData', $viewData);
@@ -77,15 +72,9 @@ class HumanController extends Controller
         return view('human.edit')->with('viewData', $viewData);
     }
 
-    public function update(Request $request, Human $human): \Illuminate\Http\RedirectResponse
+    public function update(SaveHumanRequest $request, Human $human): \Illuminate\Http\RedirectResponse
     {
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'aura' => 'required|integer',
-            'categoria' => 'required|in:común,moderado,legendario',
-        ]);
-
-        $human->update($request->only(['nombre', 'aura', 'categoria']));
+        $human->update($request->validated());
 
         return redirect()->route('humans.index')->with('success', 'Human updated successfully!');
     }

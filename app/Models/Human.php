@@ -12,9 +12,9 @@ class Human extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre',
+        'name',
         'aura',
-        'categoria',
+        'category',
     ];
 
     public function getId(): int
@@ -27,14 +27,14 @@ class Human extends Model
         $this->attributes['id'] = $id;
     }
 
-    public function getNombre(): string
+    public function getName(): string
     {
-        return $this->attributes['nombre'];
+        return $this->attributes['name'];
     }
 
-    public function setNombre(string $nombre): void
+    public function setName(string $name): void
     {
-        $this->attributes['nombre'] = $nombre;
+        $this->attributes['name'] = $name;
     }
 
     public function getAura(): int
@@ -47,13 +47,28 @@ class Human extends Model
         $this->attributes['aura'] = $aura;
     }
 
-    public function getCategoria(): string
+    public function getCategory(): string
     {
-        return $this->attributes['categoria'];
+        return $this->attributes['category'];
     }
 
-    public function setCategoria(string $categoria): void
+    public function setCategory(string $category): void
     {
-        $this->attributes['categoria'] = $categoria;
+        $this->attributes['category'] = $category;
+    }
+
+    public function isCommon(): bool
+    {
+        return strtolower($this->getCategory()) === 'common';
+    }
+
+    public function isModerate(): bool
+    {
+        return strtolower($this->getCategory()) === 'moderate';
+    }
+
+    public function isLegendary(): bool
+    {
+        return strtolower($this->getCategory()) === 'legendary';
     }
 }
