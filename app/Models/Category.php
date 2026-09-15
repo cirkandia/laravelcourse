@@ -83,7 +83,7 @@ class Category extends Model
 
     public function toggleStatus(): void
     {
-        $this->attributes['status'] = !$this->attributes['status'];
+        $this->attributes['status'] = ! $this->attributes['status'];
         $this->save();
     }
 

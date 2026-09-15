@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AssignCategoryRequest;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -24,8 +24,8 @@ class ProductController extends Controller
     {
         $viewData = [];
         $product = Product::findOrFail($id);
-        $viewData['title'] = $product->getName() . ' - Online Store';
-        $viewData['subtitle'] = $product->getName() . ' - Product information';
+        $viewData['title'] = $product->getName().' - Online Store';
+        $viewData['subtitle'] = $product->getName().' - Product information';
         $viewData['product'] = $product;
 
         return view('product.show')->with('viewData', $viewData);
@@ -46,7 +46,7 @@ class ProductController extends Controller
         return back()->with('success', 'Product created successfully!');
     }
 
-    public function assignCategory(\App\Http\Requests\AssignCategoryRequest $request): RedirectResponse
+    public function assignCategory(AssignCategoryRequest $request): RedirectResponse
     {
         $product = Product::findOrFail($request->input('product_id'));
         $product->setCategoryId($request->input('category_id'));

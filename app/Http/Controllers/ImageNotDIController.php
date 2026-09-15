@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreImageRequest;
 use App\Utils\ImageLocalStorage;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ImageNotDIController extends Controller
@@ -14,7 +14,7 @@ class ImageNotDIController extends Controller
         return view('imagenotdi.index');
     }
 
-    public function save(\App\Http\Requests\StoreImageRequest $request): RedirectResponse
+    public function save(StoreImageRequest $request): RedirectResponse
     {
         $storeImageLocal = new ImageLocalStorage;
         $storeImageLocal->store($request);

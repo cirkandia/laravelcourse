@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreImageRequest;
 use App\Interfaces\ImageStorage;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ImageController extends Controller
@@ -14,7 +14,7 @@ class ImageController extends Controller
         return view('image.index');
     }
 
-    public function save(\App\Http\Requests\StoreImageRequest $request, ImageStorage $storage): RedirectResponse
+    public function save(StoreImageRequest $request, ImageStorage $storage): RedirectResponse
     {
         $storage->store($request);
 
