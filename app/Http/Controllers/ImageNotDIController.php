@@ -14,7 +14,7 @@ class ImageNotDIController extends Controller
         return view('imagenotdi.index');
     }
 
-    public function save(Request $request): RedirectResponse
+    public function save(\App\Http\Requests\StoreImageRequest $request): RedirectResponse
     {
         $storeImageLocal = new ImageLocalStorage;
         $storeImageLocal->store($request);

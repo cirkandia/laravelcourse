@@ -38,6 +38,11 @@ class Product extends Model
         return $this->attributes['id'];
     }
 
+    public function setId(int $id): void
+    {
+        $this->attributes['id'] = $id;
+    }
+
     public function getName(): string
     {
         return strtoupper($this->attributes['name']);
@@ -88,13 +93,33 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): void
+    {
+        $this->category = $category;
+    }
+
     public function getCreatedAt(): string
     {
         return $this->attributes['created_at'];
     }
 
+    public function setCreatedAt($createdAt): void
+    {
+        $this->attributes['created_at'] = $createdAt;
+    }
+
     public function getUpdatedAt(): string
     {
         return $this->attributes['updated_at'];
+    }
+
+    public function setUpdatedAt($updatedAt): void
+    {
+        $this->attributes['updated_at'] = $updatedAt;
     }
 }

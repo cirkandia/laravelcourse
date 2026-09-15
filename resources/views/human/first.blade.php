@@ -4,31 +4,28 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-8 text-center mb-4">
-            <h2 class="fw-bold">Primeros 2 Humanos Registrados</h2>
-            <p class="text-muted">Un vistazo rápido al catálogo.</p>
+            <h2 class="fw-bold">First 2 Registered Humans</h2>
+            <p class="text-muted">A quick peek at the catalog.</p>
         </div>
     </div>
 
     @if(count($viewData["humans"]) == 2)
         <div class="row justify-content-center mb-4">
             <div class="col-md-8 text-center">
-                @php
-                    $p1 = $viewData["humans"][0];
-                    $p2 = $viewData["humans"][1];
-                @endphp
-                @if($p1->getAura() > $p2->getAura())
-                    <h4 class="text-success fw-bold">🏆 ¡El ganador es {{ $p1->getName() }}!</h4>
-                @elseif($p2->getAura() > $p1->getAura())
-                    <h4 class="text-success fw-bold">🏆 ¡El ganador es {{ $p2->getName() }}!</h4>
+                @if($viewData["humans"][0]->getAura() > $viewData["humans"][1]->getAura())
+                    <h4 class="text-success fw-bold">🏆 The winner is {{ $viewData["humans"][0]->getName() }}!</h4>
+                @elseif($viewData["humans"][1]->getAura() > $viewData["humans"][0]->getAura())
+                    <h4 class="text-success fw-bold">🏆 The winner is {{ $viewData["humans"][1]->getName() }}!</h4>
                 @else
-                    <h4 class="text-warning fw-bold">🤝 ¡Es un empate entre {{ $p1->getName() }} y {{ $p2->getName() }}!</h4>
+                    <h4 class="text-warning fw-bold">🤝 It's a tie between {{ $viewData["humans"][0]->getName() }} and
+                        {{ $viewData["humans"][1]->getName() }}!</h4>
                 @endif
             </div>
         </div>
     @elseif(count($viewData["humans"]) == 1)
         <div class="row justify-content-center mb-4">
             <div class="col-md-8 text-center">
-                <h4 class="text-info fw-bold">Falta otro humano para comparar quién ganaría.</h4>
+                <h4 class="text-info fw-bold">Another human is needed to compare who would win.</h4>
             </div>
         </div>
     @endif
@@ -52,7 +49,7 @@
         @else
             <div class="col-md-8 text-center mt-5">
                 <div class="alert alert-secondary rounded-3" role="alert">
-                    Aún no hay humanos en la base de datos.
+                    There are no humans in the database yet.
                 </div>
             </div>
         @endif
@@ -61,7 +58,7 @@
     <div class="row">
         <div class="col-12 text-center mt-4">
             <a href="{{ route('humans.index') }}" class="btn btn-outline-secondary">
-                Volver al listado completo
+                Back to the full list
             </a>
         </div>
     </div>

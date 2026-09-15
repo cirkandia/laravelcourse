@@ -14,7 +14,7 @@ class ImageController extends Controller
         return view('image.index');
     }
 
-    public function save(Request $request, ImageStorage $storage): RedirectResponse
+    public function save(\App\Http\Requests\StoreImageRequest $request, ImageStorage $storage): RedirectResponse
     {
         $storage->store($request);
 

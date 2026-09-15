@@ -3,11 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
+/**
+ * HUMAN ATTRIBUTES
+ * $this->attributes['id'] - int - contains the human primary key (id)
+ * $this->attributes['name'] - string - contains the human name
+ * $this->attributes['aura'] - int - contains the human aura level
+ * $this->attributes['category'] - string - contains the human category
+ *
+ * @property int $id
+ * @property string $name
+ * @property int $aura
+ * @property string $category
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ */
 class Human extends Model
 {
     /**
-     * Los atributos que son asignables en masa.
+     * The attributes that are mass assignable.
      *
      * @var array
      */
@@ -70,5 +85,25 @@ class Human extends Model
     public function isLegendary(): bool
     {
         return strtolower($this->getCategory()) === 'legendary';
+    }
+
+    public function getCreatedAt(): string
+    {
+        return $this->attributes['created_at'];
+    }
+
+    public function setCreatedAt($createdAt): void
+    {
+        $this->attributes['created_at'] = $createdAt;
+    }
+
+    public function getUpdatedAt(): string
+    {
+        return $this->attributes['updated_at'];
+    }
+
+    public function setUpdatedAt($updatedAt): void
+    {
+        $this->attributes['updated_at'] = $updatedAt;
     }
 }

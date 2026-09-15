@@ -24,8 +24,8 @@ class ProductController extends Controller
     {
         $viewData = [];
         $product = Product::findOrFail($id);
-        $viewData['title'] = $product->getName().' - Online Store';
-        $viewData['subtitle'] = $product->getName().' - Product information';
+        $viewData['title'] = $product->getName() . ' - Online Store';
+        $viewData['subtitle'] = $product->getName() . ' - Product information';
         $viewData['product'] = $product;
 
         return view('product.show')->with('viewData', $viewData);
@@ -46,13 +46,8 @@ class ProductController extends Controller
         return back()->with('success', 'Product created successfully!');
     }
 
-    public function assignCategory(Request $request): RedirectResponse
+    public function assignCategory(\App\Http\Requests\AssignCategoryRequest $request): RedirectResponse
     {
-        $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'category_id' => 'required|exists:categories,id',
-        ]);
-
         $product = Product::findOrFail($request->input('product_id'));
         $product->setCategoryId($request->input('category_id'));
         $product->save();

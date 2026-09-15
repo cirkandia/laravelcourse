@@ -31,14 +31,13 @@
 
                             <div class="d-flex gap-2">
                                 <a href="{{ route('humans.edit', $viewData["human"]->getId()) }}"
-                                    class="btn btn-primary d-inline-block">Editar Humano</a>
+                                    class="btn btn-primary d-inline-block">{{ __('messages.humans_edit') }}</a>
 
                                 <form action="{{ route('humans.destroy', $viewData["human"]->getId()) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger"
-                                        onclick="return confirm('¿Seguro de erradicar este humano?')">Erradicar
-                                        Humano</button>
+                                        onclick="return confirm('{{ __('messages.humans_delete_confirm') }}')">{{ __('messages.humans_delete') }}</button>
                                 </form>
                             </div>
                         </div>
@@ -46,7 +45,8 @@
                 </div>
             </div>
             <div class="text-center mt-4">
-                <a href="{{ route('humans.index') }}" class="btn btn-outline-secondary">Volver al listado</a>
+                <a href="{{ route('humans.index') }}"
+                    class="btn btn-outline-secondary">{{ __('messages.back_to_list') }}</a>
             </div>
         </div>
     </div>

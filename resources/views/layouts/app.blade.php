@@ -21,12 +21,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-auto">
-          <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
-          <a class="nav-link active" href="{{ route('home.about') }}">About</a>
-          <a class="nav-link active" href="{{ route('product.index') }}">Products</a>
-          <a class="nav-link active" href="{{ route('product.create') }}">Create Product</a>
-          <a class="nav-link active" href="{{ route('category.index') }}">Categories</a>
-          <a class="nav-link active" href="{{ route('humans.index') }}">Humans</a>
+          <a class="nav-link active" href="{{ route('home.index') }}">{{ __('messages.home') }}</a>
+          <a class="nav-link active" href="{{ route('home.about') }}">{{ __('messages.about') }}</a>
+          <a class="nav-link active" href="{{ route('product.index') }}">{{ __('messages.products') }}</a>
+          <a class="nav-link active" href="{{ route('product.create') }}">{{ __('messages.create_product') }}</a>
+          <a class="nav-link active" href="{{ route('category.index') }}">{{ __('messages.categories') }}</a>
+          <a class="nav-link active" href="{{ route('humans.index') }}">{{ __('messages.humans') }}</a>
+          <x-language-switch />
         </div>
       </div>
     </div>

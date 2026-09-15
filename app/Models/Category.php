@@ -29,11 +29,16 @@ use Illuminate\Support\Carbon;
  */
 class Category extends Model
 {
-    protected $fillable = ['name', 'description', 'slug', 'status'];
+    protected $fillable = ['name', 'description', 'slug', 'status', 'parent_id'];
 
     public function getId(): int
     {
         return $this->attributes['id'];
+    }
+
+    public function setId(int $id): void
+    {
+        $this->attributes['id'] = $id;
     }
 
     public function getName(): string
@@ -78,7 +83,7 @@ class Category extends Model
 
     public function toggleStatus(): void
     {
-        $this->attributes['status'] = ! $this->attributes['status'];
+        $this->attributes['status'] = !$this->attributes['status'];
         $this->save();
     }
 
@@ -86,6 +91,16 @@ class Category extends Model
     {
         // Assuming a Jewel model will exist
         return $this->hasMany('App\Models\Jewel');
+    }
+
+    public function getJewels(): Collection
+    {
+        return $this->jewels;
+    }
+
+    public function setJewels(Collection $jewels): void
+    {
+        $this->jewels = $jewels;
     }
 
     public function products(): HasMany
@@ -99,6 +114,11 @@ class Category extends Model
         return $this->products;
     }
 
+    public function setProducts(Collection $products): void
+    {
+        $this->products = $products;
+    }
+
     public function subcategories(): HasMany
     {
         // Assuming parent_id is used for child categories
@@ -110,13 +130,38 @@ class Category extends Model
         return $this->subcategories;
     }
 
+    public function setSubcategories(Collection $subcategories): void
+    {
+        $this->subcategories = $subcategories;
+    }
+
+    public function getParentId(): ?int
+    {
+        return $this->attributes['parent_id'];
+    }
+
+    public function setParentId(?int $parentId): void
+    {
+        $this->attributes['parent_id'] = $parentId;
+    }
+
     public function getCreatedAt(): string
     {
         return $this->attributes['created_at'];
     }
 
+    public function setCreatedAt($createdAt): void
+    {
+        $this->attributes['created_at'] = $createdAt;
+    }
+
     public function getUpdatedAt(): string
     {
         return $this->attributes['updated_at'];
+    }
+
+    public function setUpdatedAt($updatedAt): void
+    {
+        $this->attributes['updated_at'] = $updatedAt;
     }
 }

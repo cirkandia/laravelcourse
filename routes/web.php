@@ -43,11 +43,7 @@ Route::get('/image-not-di', [ImageNotDIController::class, 'index'])->name('image
 Route::post('/image-not-di/save', [ImageNotDIController::class, 'save'])->name('imagenotdi.save');
 
 // Human Routes
-Route::get('/humans/primeros', [HumanController::class, 'primeros'])->name('humans.primeros');
+Route::get('/humans/first', [HumanController::class, 'first'])->name('humans.first');
 Route::get('/humans', [HumanController::class, 'index'])->name('humans.index');
 Route::get('/humans/create', [HumanController::class, 'create'])->name('humans.create');
 Route::post('/humans', [HumanController::class, 'store'])->name('humans.store');
-Route::get('/humans/{human}', [HumanController::class, 'show'])->name('humans.show');
-Route::get('/humans/{human}/edit', [HumanController::class, 'edit'])->name('humans.edit');
-Route::put('/humans/{human}', [HumanController::class, 'update'])->name('humans.update');
-Route::delete('/humans/{human}', [HumanController::class, 'destroy'])->name('humans.destroy');
