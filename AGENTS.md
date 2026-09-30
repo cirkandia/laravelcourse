@@ -63,3 +63,6 @@ Antes de generar o aprobar un archivo, verifica que no se incurra en estas penal
 * **[CRÍTICO: -0.2 puntos]** ¿Falta el listado (docblock `@property`) de los atributos en la parte superior del modelo?[cite: 3]
 * **[CRÍTICO: -0.4 puntos]** ¿Falta la declaración de métodos getters y/o setters para algún atributo?[cite: 3]
 * **[REDUCCIÓN CONSTANTE]** ¿El código intenta acceder directamente a un dato del modelo en un controlador o vista sin usar su respectivo get/set?[cite: 3]
+
+todas las ejecucuciones de php estan dirigidas a al php en mamp de este proyecto, avisar siempre este caso poque se usa en comandos como
+C:\MAMP\bin\php\php8.5.9\php.exe vendor/bin/pint

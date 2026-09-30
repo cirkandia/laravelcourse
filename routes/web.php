@@ -43,7 +43,11 @@ Route::get('/image-not-di', [ImageNotDIController::class, 'index'])->name('image
 Route::post('/image-not-di/save', [ImageNotDIController::class, 'save'])->name('imagenotdi.save');
 
 // Human Routes
-Route::get('/humans/first', [HumanController::class, 'first'])->name('humans.first');
+Route::get('/humans/{id}', [HumanController::class, 'show'])->name('humans.show');
+
+Route::get('/test-api', function () {
+    return view('test-api');
+});
 Route::get('/humans', [HumanController::class, 'index'])->name('humans.index');
 Route::get('/humans/create', [HumanController::class, 'create'])->name('humans.create');
 Route::post('/humans', [HumanController::class, 'store'])->name('humans.store');
