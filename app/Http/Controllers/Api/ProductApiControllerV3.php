@@ -35,11 +35,11 @@ class ProductApiControllerV3 extends Controller
             'price' => 'required|numeric|min:0',
         ]);
 
-        $product = new Product();
+        $product = new Product;
         $product->setName($request->input('name'));
         $product->setPrice($request->input('price'));
         // Si la categoría no es requerida, puedes ponerla a null o verificar si viene
-        // $product->setCategoryId(null); 
+        // $product->setCategoryId(null);
         $product->save();
 
         return response()->json(['message' => 'Product created successfully', 'product' => $product], 201);
